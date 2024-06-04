@@ -20,44 +20,972 @@ const Header = () => {
 );
 };
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+    const {resData} = props;
     return(
         <div className='res-card' >
             
-            <img className='res-logo' src='data:image/jpeg;base64,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' alt='meghanafoods'/>
-            <h3>Meghana Foods</h3>
-            <h4>South Indian , North Indian</h4>
-            <h4> 4.4 stars</h4>
-            <h4> 38 mins</h4>
+            <img className='res-logo' src= {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + resData?.info?.cloudinaryImageId} alt='meghanafoods'/>
+            <h3>{resData?.info?.name}</h3>
+            <h4> {resData?.info?.cuisines.join(", ")}</h4>
+            <h4>{resData?.info?.avgRating}</h4>
+            <h4>{resData?.info?.costForTwo}</h4>
+            <h4>{resData?.info?.sla?.deliveryTime} minutes</h4>
         </div>
     )
-}
+};
+
+const resObj = {
+    "id": "10576",
+    "name": "Pizza Hut",
+    "cloudinaryImageId": "2b4f62d606d1b2bfba9ba9e5386fabb7",
+    "locality": "Koramangala",
+    "areaName": "Koramangala",
+    "costForTwo": "₹350 for two",
+    "cuisines": [
+        "Pizzas"
+    ],
+    "avgRating": 4.1,
+    "parentId": "721",
+    "avgRatingString": "4.1",
+    "totalRatingsString": "10K+",
+    "sla": {
+        "deliveryTime": 26,
+        "lastMileTravel": 0.8,
+        "serviceability": "SERVICEABLE",
+        "slaString": "25-30 mins",
+        "lastMileTravelString": "0.8 km",
+        "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+        "nextCloseTime": "2024-06-05 04:00:00",
+        "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+        "entityBadges": {
+            "imageBased": {},
+            "textBased": {},
+            "textExtendedBadges": {}
+        }
+    },
+    "aggregatedDiscountInfoV3": {
+        "header": "ITEMS",
+        "subHeader": "AT ₹189"
+    },
+    "orderabilityCommunication": {
+        "title": {},
+        "subTitle": {},
+        "message": {},
+        "customIcon": {}
+    },
+    "differentiatedUi": {
+        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {},
+            "video": {}
+        }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {},
+    "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+    },
+    "cta": {
+        "link": "https://www.swiggy.com/restaurants/pizza-hut-koramangala-bangalore-10576",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+};
+
+const resList = [
+    {
+      "info": {
+        "id": "10576",
+        "name": "Pizza Hut",
+        "cloudinaryImageId": "2b4f62d606d1b2bfba9ba9e5386fabb7",
+        "locality": "Koramangala",
+        "areaName": "Koramangala",
+        "costForTwo": "₹350 for two",
+        "cuisines": [
+          "Pizzas"
+        ],
+        "avgRating": 4.1,
+        "parentId": "721",
+        "avgRatingString": "4.1",
+        "totalRatingsString": "10K+",
+        "sla": {
+          "deliveryTime": 26,
+          "lastMileTravel": 0.8,
+          "serviceability": "SERVICEABLE",
+          "slaString": "25-30 mins",
+          "lastMileTravelString": "0.8 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-05 04:00:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "ITEMS",
+          "subHeader": "AT ₹189"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/pizza-hut-koramangala-bangalore-10576",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "393840",
+        "name": "Chinese Wok",
+        "cloudinaryImageId": "e0839ff574213e6f35b3899ebf1fc597",
+        "locality": "Chikka Lakshmaiah Layout",
+        "areaName": "Adugodi",
+        "costForTwo": "₹250 for two",
+        "cuisines": [
+          "Chinese",
+          "Asian",
+          "Tibetan",
+          "Desserts"
+        ],
+        "avgRating": 4.2,
+        "parentId": "61955",
+        "avgRatingString": "4.2",
+        "totalRatingsString": "1K+",
+        "sla": {
+          "deliveryTime": 32,
+          "lastMileTravel": 2.5,
+          "serviceability": "SERVICEABLE",
+          "slaString": "30-35 mins",
+          "lastMileTravelString": "2.5 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-05 02:00:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "ITEMS",
+          "subHeader": "AT ₹149"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/chinese-wok-chikka-lakshmaiah-layout-adugodi-bangalore-393840",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "581809",
+        "name": "UBQ by Barbeque Nation",
+        "cloudinaryImageId": "muaktnk5xb3zop4bvj6l",
+        "locality": "7th Block",
+        "areaName": "Koramangala",
+        "costForTwo": "₹300 for two",
+        "cuisines": [
+          "North Indian",
+          "Barbecue",
+          "Biryani",
+          "Kebabs",
+          "Mughlai",
+          "Desserts"
+        ],
+        "avgRating": 3.8,
+        "parentId": "10804",
+        "avgRatingString": "3.8",
+        "totalRatingsString": "100+",
+        "sla": {
+          "deliveryTime": 25,
+          "lastMileTravel": 1.4,
+          "serviceability": "SERVICEABLE",
+          "slaString": "25-30 mins",
+          "lastMileTravelString": "1.4 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-04 16:30:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "50% OFF",
+          "subHeader": "UPTO ₹100"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/ubq-by-barbeque-nation-7th-block-koramangala-bangalore-581809",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "59627",
+        "name": "La Pino'z Pizza",
+        "cloudinaryImageId": "ntjshqsv2k7vxtv7vmib",
+        "locality": "Koramangala",
+        "areaName": "Koramangala",
+        "costForTwo": "₹251 for two",
+        "cuisines": [
+          "Pizzas",
+          "Pastas",
+          "Italian",
+          "Desserts",
+          "Beverages"
+        ],
+        "avgRating": 4.3,
+        "parentId": "4961",
+        "avgRatingString": "4.3",
+        "totalRatingsString": "10K+",
+        "sla": {
+          "deliveryTime": 21,
+          "lastMileTravel": 1.5,
+          "serviceability": "SERVICEABLE",
+          "slaString": "20-25 mins",
+          "lastMileTravelString": "1.5 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-05 03:00:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "50% OFF",
+          "subHeader": "UPTO ₹100"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/la-pinoz-pizza-koramangala-bangalore-59627",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "581808",
+        "name": "Barbeque Nation",
+        "cloudinaryImageId": "koxmlppfprrurmmcvxp9",
+        "locality": "Koramangala",
+        "areaName": "Koramangala",
+        "costForTwo": "₹600 for two",
+        "cuisines": [
+          "North Indian",
+          "Barbecue",
+          "Biryani",
+          "Kebabs",
+          "Mughlai",
+          "Desserts"
+        ],
+        "avgRating": 3.8,
+        "parentId": "2438",
+        "avgRatingString": "3.8",
+        "totalRatingsString": "100+",
+        "sla": {
+          "deliveryTime": 31,
+          "lastMileTravel": 1.4,
+          "serviceability": "SERVICEABLE",
+          "slaString": "30-35 mins",
+          "lastMileTravelString": "1.4 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-04 16:30:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "50% OFF",
+          "subHeader": "UPTO ₹100"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/barbeque-nation-koramangala-bangalore-581808",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "621512",
+        "name": "The Belgian Waffle Co.",
+        "cloudinaryImageId": "5116a385bac0548e06c33c08350fbf11",
+        "locality": "K.H.B Colony",
+        "areaName": "Koramangala",
+        "costForTwo": "₹200 for two",
+        "cuisines": [
+          "Waffle",
+          "Desserts",
+          "Ice Cream",
+          "Beverages"
+        ],
+        "avgRating": 4.5,
+        "veg": true,
+        "parentId": "2233",
+        "avgRatingString": "4.5",
+        "totalRatingsString": "1K+",
+        "sla": {
+          "deliveryTime": 24,
+          "lastMileTravel": 1.4,
+          "serviceability": "SERVICEABLE",
+          "slaString": "20-25 mins",
+          "lastMileTravelString": "1.4 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-05 00:00:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "20% OFF",
+          "subHeader": "UPTO ₹50"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/the-belgian-waffle-co-k-h-b-colony-koramangala-bangalore-621512",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "375041",
+        "name": "Andhra Gunpowder",
+        "cloudinaryImageId": "byilgyrcfz690ryoasww",
+        "locality": "6th Block",
+        "areaName": "Koramangala",
+        "costForTwo": "₹350 for two",
+        "cuisines": [
+          "Andhra",
+          "Biryani",
+          "South Indian"
+        ],
+        "avgRating": 4.5,
+        "parentId": "10496",
+        "avgRatingString": "4.5",
+        "totalRatingsString": "1K+",
+        "sla": {
+          "deliveryTime": 16,
+          "lastMileTravel": 0.1,
+          "serviceability": "SERVICEABLE",
+          "slaString": "15-20 mins",
+          "lastMileTravelString": "0.1 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-05 01:00:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "aggregatedDiscountInfoV2": {
+          
+        },
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/andhra-gunpowder-6th-block-koramangala-bangalore-375041",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "392828",
+        "name": "Big Bowl",
+        "cloudinaryImageId": "c99751d54e4e1847186c62b3309c1327",
+        "locality": "Chikka Lakshmaiah Layout",
+        "areaName": "Adugodi",
+        "costForTwo": "₹250 for two",
+        "cuisines": [
+          "North Indian",
+          "Chinese",
+          "Tibetan",
+          "Desserts"
+        ],
+        "avgRating": 4.1,
+        "parentId": "434792",
+        "avgRatingString": "4.1",
+        "totalRatingsString": "1K+",
+        "sla": {
+          "deliveryTime": 31,
+          "lastMileTravel": 2.5,
+          "serviceability": "SERVICEABLE",
+          "slaString": "30-35 mins",
+          "lastMileTravelString": "2.5 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-05 02:00:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "ITEMS",
+          "subHeader": "AT ₹179"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/big-bowl-chikka-lakshmaiah-layout-adugodi-bangalore-392828",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+      "info": {
+        "id": "25620",
+        "name": "KFC",
+        "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/69e69c55-d2bb-4207-8310-131fc693f78a_25620.JPG",
+        "locality": "Intermediate Ring Road",
+        "areaName": "Ejipura",
+        "costForTwo": "₹400 for two",
+        "cuisines": [
+          "Burgers",
+          "Fast Food",
+          "Rolls & Wraps"
+        ],
+        "avgRating": 4.2,
+        "parentId": "547",
+        "avgRatingString": "4.2",
+        "totalRatingsString": "10K+",
+        "sla": {
+          "deliveryTime": 16,
+          "lastMileTravel": 0.8,
+          "serviceability": "SERVICEABLE",
+          "slaString": "15-20 mins",
+          "lastMileTravelString": "0.8 km",
+          "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+          "nextCloseTime": "2024-06-04 23:00:00",
+          "opened": true
+        },
+        "badges": {
+          
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+          "entityBadges": {
+            "imageBased": {
+              
+            },
+            "textBased": {
+              
+            },
+            "textExtendedBadges": {
+              
+            }
+          }
+        },
+        "aggregatedDiscountInfoV3": {
+          "header": "20% OFF",
+          "subHeader": "UPTO ₹50"
+        },
+        "orderabilityCommunication": {
+          "title": {
+            
+          },
+          "subTitle": {
+            
+          },
+          "message": {
+            
+          },
+          "customIcon": {
+            
+          }
+        },
+        "differentiatedUi": {
+          "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+          "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {
+              
+            },
+            "video": {
+              
+            }
+          }
+        },
+        "reviewsSummary": {
+          
+        },
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {
+          
+        }
+      },
+      "analytics": {
+        "context": "seo-data-f83d343e-32d0-4add-9b5f-05ca30e4aec9"
+      },
+      "cta": {
+        "link": "https://www.swiggy.com/restaurants/kfc-intermediate-ring-road-ejipura-bangalore-25620",
+        "text": "RESTAURANT_MENU",
+        "type": "WEBLINK"
+      },
+      "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    }
+  ];
+
 
 const Body = () => {
     return (
         <div className='body'>
             <div className='search'>Search Bar</div>
             <div className='res-container'>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
-                <RestaurantCard/>
+                <RestaurantCard resData = {resList[0]}/>
+                <RestaurantCard resData = {resList[1]}/>
+                <RestaurantCard resData = {resList[2]}/>
+                <RestaurantCard resData = {resList[3]}/>
+                <RestaurantCard resData = {resList[4]}/>
+                <RestaurantCard resData = {resList[5]}/>
+                <RestaurantCard resData = {resList[6]}/>
+                <RestaurantCard resData = {resList[7]}/>
+                <RestaurantCard resData = {resList[8]}/>
+
             </div>
             
         </div>
