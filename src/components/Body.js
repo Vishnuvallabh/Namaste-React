@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+import Shimmer from "./Shimmer";
 
   
 const Body = () => {
@@ -22,10 +22,12 @@ const Body = () => {
     console.log(data);
     const json = await data.json();
     console.log(json.data);
-     setlistOfRestaurants(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+     setlistOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   };
 
-    return (
+// Conditional Rendering using Ternary Operator.
+  
+    return listOfRestaurants.length === 0 ? <Shimmer/> : (
         <div className='body'>
           <div>
             <button className='filter-btn' onClick={handleTopRatedRestaurants}>Top Rated Restaurants</button>
